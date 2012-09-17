@@ -11,7 +11,7 @@ public class Main {
 		// TODO implement
 
 		MainService mainService = new MainServiceImpl();
-		// pass mainService to the corresponding GUI classes test
+		// pass mainService to the corresponding GUI classes
 	}
 
 }
