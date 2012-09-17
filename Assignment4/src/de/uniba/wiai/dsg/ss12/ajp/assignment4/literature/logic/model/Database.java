@@ -2,12 +2,13 @@ package de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Database {
+public class Database extends Observable {
 
 	private List<Author> authors = new LinkedList<>();
 	private List<Book> books = new LinkedList<>();
