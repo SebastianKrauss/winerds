@@ -1,6 +1,8 @@
 package de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.gui;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,12 +14,15 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.controller.MainController;
+
 public class MainFrame extends JFrame {
 
 	public MainFrame() {
 		this.setTitle("Literaturdatenbank");
-		this.setSize(400, 400);
+		this.setSize(828, 400);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(getParent());
 		this.setJMenuBar(createMenuBar());
 		this.add(createMainPane());
 		this.setResizable(true);
@@ -25,15 +30,30 @@ public class MainFrame extends JFrame {
 
 	}
 
+	private MainController controller;
+
 	private JMenuBar createMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("Datei");
-
 		menuBar.add(menu);
-		menu.add(new JMenuItem("Neu"));
-		menu.add(new JMenuItem("Laden"));
-		menu.add(new JMenuItem("Speichern unter"));
-		menu.add(new JMenuItem("Beenden"));
+
+		JMenuItem newItem = new JMenuItem("Neu");
+		newItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.update(); // HUNDEGRAB
+
+			}
+		});
+		JMenuItem loadItem = new JMenuItem("Laden");
+		JMenuItem saveItem = new JMenuItem("Speichern unter");
+		JMenuItem closeItem = new JMenuItem("Beenden");
+
+		menu.add(newItem);
+		menu.add(loadItem);
+		menu.add(saveItem);
+		menu.add(closeItem);
 
 		return menuBar;
 	}
@@ -48,13 +68,14 @@ public class MainFrame extends JFrame {
 
 	private JPanel createAuthorPane() {
 		JPanel authorPane = new JPanel();
+		// authorPane.setBorder(BorderFactory.createLineBorder(Color.black));
 		authorPane.setLayout(new BorderLayout());
-		authorPane.add(new JLabel("Autoren"), BorderLayout.NORTH);
+		authorPane.add(new JLabel("             Autoren"), BorderLayout.NORTH);
 		// JTable authorTable = new JTable(new AuthorTableModel());
 		authorPane.add(new JScrollPane(), BorderLayout.CENTER);
-		authorPane
-				.add(new JLabel("                       "), BorderLayout.WEST);
-		authorPane.add(createAuthorButtonPane());
+		authorPane.add(new JLabel("             "), BorderLayout.WEST);
+		authorPane.add(new JLabel("             "), BorderLayout.EAST);
+		authorPane.add(createAuthorButtonPane(), BorderLayout.SOUTH);
 
 		return authorPane;
 	}
@@ -65,7 +86,7 @@ public class MainFrame extends JFrame {
 				BoxLayout.X_AXIS));
 		authorButtonPane
 				.add(new JLabel(
-						"                                                                    "));
+						"                                                                              "));
 		authorButtonPane.add(new JButton("ausgewählten Autor löschen"));
 		authorButtonPane.add(new JLabel("                  "));
 		authorButtonPane.add(new JButton("Neuen Autor anlegen"));
@@ -74,11 +95,15 @@ public class MainFrame extends JFrame {
 
 	private JPanel createBookPane() {
 		JPanel bookPane = new JPanel();
+		// bookPane.setBorder(BorderFactory.createLineBorder(Color.black));
+		// IIIIHHHH
 		bookPane.setLayout(new BorderLayout());
-		bookPane.add(new JLabel("Bücher"), BorderLayout.NORTH);
+		bookPane.add(new JLabel("             Bücher"), BorderLayout.NORTH);
 		// JTable bookTable = new JTable(new BookTableModel());
 		bookPane.add(new JScrollPane(), BorderLayout.CENTER);
-		bookPane.add(createBookButtonPane());
+		bookPane.add(new JLabel("             "), BorderLayout.WEST);
+		bookPane.add(new JLabel("             "), BorderLayout.EAST);
+		bookPane.add(createBookButtonPane(), BorderLayout.SOUTH);
 		return bookPane;
 	}
 
@@ -88,10 +113,10 @@ public class MainFrame extends JFrame {
 				.setLayout(new BoxLayout(bookButtonPane, BoxLayout.X_AXIS));
 		bookButtonPane
 				.add(new JLabel(
-						"                                                                    "));
+						"                                                                              "));
 		bookButtonPane.add(new JButton("ausgewähltes Buch löschen"));
 		bookButtonPane.add(new JLabel("                  "));
-		bookButtonPane.add(new JButton("Neues Buch anlegen"));
+		bookButtonPane.add(new JButton("Neues Buch anlegen   "));
 		return bookButtonPane;
 	}
 
