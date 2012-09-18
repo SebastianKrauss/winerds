@@ -11,7 +11,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 public class MainFrame extends JFrame {
 
@@ -51,7 +50,7 @@ public class MainFrame extends JFrame {
 		JPanel authorPane = new JPanel();
 		authorPane.setLayout(new BorderLayout());
 		authorPane.add(new JLabel("Autoren"), BorderLayout.NORTH);
-		JTable authorTable = new JTable(new AuthorTableModel());
+		// JTable authorTable = new JTable(new AuthorTableModel());
 		authorPane.add(new JScrollPane(), BorderLayout.CENTER);
 		authorPane
 				.add(new JLabel("                       "), BorderLayout.WEST);
@@ -77,7 +76,6 @@ public class MainFrame extends JFrame {
 		JPanel bookPane = new JPanel();
 		bookPane.setLayout(new BorderLayout());
 		bookPane.add(new JLabel("Bücher"), BorderLayout.NORTH);
-		// Table
 		// JTable bookTable = new JTable(new BookTableModel());
 		bookPane.add(new JScrollPane(), BorderLayout.CENTER);
 		bookPane.add(createBookButtonPane());

@@ -1,26 +1,45 @@
 package de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.gui;
 
+import java.util.LinkedList;
+
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 
-public class AuthorTableModel extends AbstractTableModel implements TableModel {
+import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.controller.TableController;
+import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.model.Author;
 
-	@Override
-	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return 0;
+public class AuthorTableModel extends AbstractTableModel {
+
+	public AuthorTableModel(LinkedList<Author> authorList) {
+		this.authorTableData = authorList;
 	}
+
+	private TableController tableController = new TableController();
+	private String[] columnNames = { "Id", "Name", "Email",
+			"Geschriebene Bücher" };
+
+	private LinkedList<Author> authorTableData;
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return columnNames.length;
 	}
 
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
-		return null;
+	public int getRowCount() {
+		return authorTableData.size();
 	}
 
+	@Override
+	public Object getValueAt(int row, int column) {
+		if (column == 0) {
+			return authorTableData.get(row).getId();
+		} else if (column == 1) {
+			return authorTableData.get(row).getName();
+		} else if (column == 2) {
+			return authorTableData.get(row).getEmail();
+		} else {
+			return authorTableData.get(row).getWrittenBooks();
+		}
+
+	}
 }

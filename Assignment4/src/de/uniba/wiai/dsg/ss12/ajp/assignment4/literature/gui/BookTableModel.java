@@ -13,7 +13,7 @@ public class BookTableModel extends AbstractTableModel {
 		this.bookTableData = bookList;
 	}
 	
-	private TableController tableController = new TableController();
+	private TableController bookTableController = new TableController();
 	private String[] columnNames = {"Id","Titel","ISBN", "Cover","E.-Jahr","Autoren"};
 	
 	private LinkedList<Book> bookTableData;
