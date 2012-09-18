@@ -14,17 +14,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class MainFrame extends JFrame {
-	
-	
-	public MainFrame(){
+
+	public MainFrame() {
 		this.setTitle("Literaturdatenbank");
-		this.setSize(400,400);
+		this.setSize(400, 400);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setJMenuBar(createMenuBar());
 		this.add(createMainPane());
 		this.setResizable(true);
 		this.setVisible(true);
-		
+
 	}
 
 	private JMenuBar createMenuBar() {
@@ -36,10 +35,10 @@ public class MainFrame extends JFrame {
 		menu.add(new JMenuItem("Laden"));
 		menu.add(new JMenuItem("Speichern unter"));
 		menu.add(new JMenuItem("Beenden"));
-		
+
 		return menuBar;
 	}
-	
+
 	private JPanel createMainPane() {
 		JPanel mainPane = new JPanel();
 		mainPane.setLayout(new BoxLayout(mainPane, BoxLayout.Y_AXIS));
@@ -51,20 +50,23 @@ public class MainFrame extends JFrame {
 	private JPanel createAuthorPane() {
 		JPanel authorPane = new JPanel();
 		authorPane.setLayout(new BorderLayout());
-		authorPane.add(new JLabel("Autoren"),BorderLayout.NORTH);
-	//Table
+		authorPane.add(new JLabel("Autoren"), BorderLayout.NORTH);
+		JTable authorTable = new JTable(new AuthorTableModel());
 		authorPane.add(new JScrollPane(), BorderLayout.CENTER);
-		authorPane.add(new JLabel("                       "),BorderLayout.WEST);
+		authorPane
+				.add(new JLabel("                       "), BorderLayout.WEST);
 		authorPane.add(createAuthorButtonPane());
-		
-		
+
 		return authorPane;
 	}
 
 	private JPanel createAuthorButtonPane() {
 		JPanel authorButtonPane = new JPanel();
-		authorButtonPane.setLayout(new BoxLayout(authorButtonPane, BoxLayout.X_AXIS));
-		authorButtonPane.add(new JLabel("                                                                    "));
+		authorButtonPane.setLayout(new BoxLayout(authorButtonPane,
+				BoxLayout.X_AXIS));
+		authorButtonPane
+				.add(new JLabel(
+						"                                                                    "));
 		authorButtonPane.add(new JButton("ausgewählten Autor löschen"));
 		authorButtonPane.add(new JLabel("                  "));
 		authorButtonPane.add(new JButton("Neuen Autor anlegen"));
@@ -74,9 +76,9 @@ public class MainFrame extends JFrame {
 	private JPanel createBookPane() {
 		JPanel bookPane = new JPanel();
 		bookPane.setLayout(new BorderLayout());
-		bookPane.add(new JLabel("Bücher"),BorderLayout.NORTH);
-	//Table
-		//JTable bookTable = new JTable(new BookTableModel());
+		bookPane.add(new JLabel("Bücher"), BorderLayout.NORTH);
+		// Table
+		// JTable bookTable = new JTable(new BookTableModel());
 		bookPane.add(new JScrollPane(), BorderLayout.CENTER);
 		bookPane.add(createBookButtonPane());
 		return bookPane;
@@ -84,12 +86,15 @@ public class MainFrame extends JFrame {
 
 	private JPanel createBookButtonPane() {
 		JPanel bookButtonPane = new JPanel();
-		bookButtonPane.setLayout(new BoxLayout(bookButtonPane, BoxLayout.X_AXIS));
-		bookButtonPane.add(new JLabel("                                                                    "));
+		bookButtonPane
+				.setLayout(new BoxLayout(bookButtonPane, BoxLayout.X_AXIS));
+		bookButtonPane
+				.add(new JLabel(
+						"                                                                    "));
 		bookButtonPane.add(new JButton("ausgewähltes Buch löschen"));
 		bookButtonPane.add(new JLabel("                  "));
 		bookButtonPane.add(new JButton("Neues Buch anlegen"));
 		return bookButtonPane;
 	}
-	
+
 }
