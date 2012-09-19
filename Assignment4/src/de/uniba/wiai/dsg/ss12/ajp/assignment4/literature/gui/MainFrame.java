@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -87,9 +89,13 @@ public class MainFrame extends JFrame {
 		authorButtonPane
 				.add(new JLabel(
 						"                                                                              "));
-		authorButtonPane.add(new JButton("ausgewählten Autor löschen"));
+		JButton deleteAuthor = new JButton("ausgewählten Autor löschen",new ImageIcon(getClass().getResource("/delete.png")));
+		deleteAuthor.setHorizontalTextPosition(AbstractButton.RIGHT);
+		authorButtonPane.add(deleteAuthor);
 		authorButtonPane.add(new JLabel("                  "));
-		authorButtonPane.add(new JButton("Neuen Autor anlegen"));
+		JButton createAuthor = new JButton("Neuen Autor anlegen",new ImageIcon(getClass().getResource("/new.png")));
+		createAuthor.setHorizontalTextPosition(AbstractButton.RIGHT);
+		authorButtonPane.add(createAuthor);
 		return authorButtonPane;
 	}
 
@@ -114,9 +120,13 @@ public class MainFrame extends JFrame {
 		bookButtonPane
 				.add(new JLabel(
 						"                                                                              "));
-		bookButtonPane.add(new JButton("ausgewähltes Buch löschen"));
+		JButton deleteBook = new JButton("ausgewähltes Buch löschen",new ImageIcon(getClass().getResource("/delete.png")));
+		deleteBook.setHorizontalTextPosition(AbstractButton.RIGHT);
+		bookButtonPane.add(deleteBook);
 		bookButtonPane.add(new JLabel("                  "));
-		bookButtonPane.add(new JButton("Neues Buch anlegen   "));
+		JButton createBook = new JButton("Neues Buch anlegen",new ImageIcon(getClass().getResource("/new.png")));
+		createBook.setHorizontalTextPosition(AbstractButton.RIGHT);
+		bookButtonPane.add(createBook);
 		return bookButtonPane;
 	}
 
