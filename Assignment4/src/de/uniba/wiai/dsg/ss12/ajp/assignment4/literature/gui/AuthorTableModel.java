@@ -1,5 +1,6 @@
 package de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.gui;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import javax.swing.table.AbstractTableModel;
@@ -7,10 +8,12 @@ import javax.swing.table.AbstractTableModel;
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.controller.TableController;
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.model.Author;
 
+@SuppressWarnings("serial")
 public class AuthorTableModel extends AbstractTableModel {
 
-	public AuthorTableModel(LinkedList<Author> authorList) {
-		this.authorTableData = authorList;
+	public AuthorTableModel(Author[] authorArray) {
+		this.authorTableData = new LinkedList<Author>(
+				Arrays.asList(authorArray));
 	}
 
 	private TableController tableController = new TableController();
@@ -18,6 +21,10 @@ public class AuthorTableModel extends AbstractTableModel {
 			"Geschriebene Bücher" };
 
 	private LinkedList<Author> authorTableData;
+
+	public String getColumnName(int columnIndex) {
+		return columnNames[columnIndex];
+	}
 
 	@Override
 	public int getColumnCount() {
