@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Database extends Observable {
+public class Database {
 
 	private List<Author> authors = new LinkedList<>();
 	private List<Book> books = new LinkedList<>();

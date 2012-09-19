@@ -17,10 +17,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.controller.MainController;
+import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.MainService;
 
 public class MainFrame extends JFrame {
 
-	public MainFrame() {
+	public MainFrame(MainService mainService) {
+		this.mainService = mainService;
 		this.setTitle("Literaturdatenbank");
 		this.setSize(828, 400);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -32,7 +34,7 @@ public class MainFrame extends JFrame {
 
 	}
 
-	private MainController controller;
+	private MainService mainService;
 
 	private JMenuBar createMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
@@ -40,14 +42,7 @@ public class MainFrame extends JFrame {
 		menuBar.add(menu);
 
 		JMenuItem newItem = new JMenuItem("Neu");
-		newItem.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.update(); // HUNDEGRAB
-
-			}
-		});
 		JMenuItem loadItem = new JMenuItem("Laden");
 		JMenuItem saveItem = new JMenuItem("Speichern unter");
 		JMenuItem closeItem = new JMenuItem("Beenden");

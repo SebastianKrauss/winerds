@@ -7,10 +7,8 @@ import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.model.Database;
 
 public class TableController implements Observer {
 
-	private Database db;
 	
 	public void register(){
-		db.addObserver(this);
 	}
 	
 	
