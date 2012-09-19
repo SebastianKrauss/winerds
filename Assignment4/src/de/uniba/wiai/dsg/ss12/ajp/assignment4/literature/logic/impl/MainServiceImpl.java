@@ -4,7 +4,6 @@ import static de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.impl.Valid
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Observable;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXB;
@@ -19,7 +18,7 @@ import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.LiteratureDatabas
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.MainService;
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.model.Database;
 
-public class MainServiceImpl extends Observable implements MainService {
+public class MainServiceImpl implements MainService {
 
 	private static final String XSD_SCHEMA_PATH = "schema1.xsd";
 

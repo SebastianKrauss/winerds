@@ -11,6 +11,7 @@ import static de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.impl.Valid
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Observable;
 
 import javax.xml.bind.JAXB;
 
@@ -21,7 +22,7 @@ import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.model.Book;
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.model.Cover;
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.model.Database;
 
-class DatabaseServiceImpl implements DatabaseService {
+class DatabaseServiceImpl extends Observable implements DatabaseService {
 
 	private Database database;
 
@@ -59,6 +60,7 @@ class DatabaseServiceImpl implements DatabaseService {
 		book.setAuthors(Arrays.asList(authors));
 
 		database.addBook(book);
+		notifyObservers(getBooks());
 	}
 
 	private void validateUniquenessOfBookId(String id)
@@ -88,6 +90,7 @@ class DatabaseServiceImpl implements DatabaseService {
 					+ " does not exist");
 		}
 		database.removeBook(book);
+		notifyObservers(getBooks());
 	}
 
 	@Override
@@ -102,6 +105,7 @@ class DatabaseServiceImpl implements DatabaseService {
 		}
 		if (author.hasBooks()) {
 			database.getAuthors().remove(author);
+			notifyObservers(getAuthors());
 		} else {
 			throw new LiteratureDatabaseException("author still has books");
 		}
@@ -125,6 +129,7 @@ class DatabaseServiceImpl implements DatabaseService {
 		author.setId(id);
 
 		database.addAuthor(author);
+		notifyObservers(getAuthors());
 	}
 
 	private void assertUniquenessOfAuthorId(String id)
@@ -156,6 +161,8 @@ class DatabaseServiceImpl implements DatabaseService {
 	@Override
 	public void clear() {
 		database.clear();
+		notifyObservers(getAuthors());
+		notifyObservers(getBooks());
 	}
 
 	@Override
