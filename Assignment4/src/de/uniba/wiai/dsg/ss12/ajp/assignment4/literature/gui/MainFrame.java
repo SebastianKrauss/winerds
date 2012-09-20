@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.event.ListSelectionListener;
 
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.LiteratureDatabaseException;
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.MainService;
@@ -30,6 +29,7 @@ public class MainFrame extends JFrame {
 	JMenuItem closeItem = new JMenuItem("Beenden");
 
 	JTable authorTable;
+
 	JButton deleteAuthor = new JButton("ausgewählten Autor löschen",
 			new ImageIcon(getClass().getResource("/delete.png")));
 	JButton createAuthor = new JButton("Neuen Autor anlegen", new ImageIcon(
@@ -40,6 +40,8 @@ public class MainFrame extends JFrame {
 			new ImageIcon(getClass().getResource("/delete.png")));
 	JButton createBook = new JButton("Neues Buch anlegen", new ImageIcon(
 			getClass().getResource("/new.png")));
+
+	private MainService mainService;
 
 	public MainFrame(MainService mainService) {
 		this.mainService = mainService;
@@ -54,7 +56,13 @@ public class MainFrame extends JFrame {
 
 	}
 
-	private MainService mainService;
+	public JTable getAuthorTable() {
+		return authorTable;
+	}
+
+	public JTable getBookTable() {
+		return bookTable;
+	}
 
 	private JMenuBar createMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
@@ -169,14 +177,6 @@ public class MainFrame extends JFrame {
 		closeItem.addActionListener(al);
 	}
 
-	public void addAuthorTableListSelectionListener(ListSelectionListener lsl) {
-		authorTable.getSelectionModel().addListSelectionListener(lsl);
-	}
-
-	public void addBookTableListSelectionListener(ListSelectionListener lsl) {
-		bookTable.getSelectionModel().addListSelectionListener(lsl);
-	}
-
 	public void addDeleteAuthorListener(ActionListener al) {
 		deleteAuthor.addActionListener(al);
 	}
@@ -189,7 +189,7 @@ public class MainFrame extends JFrame {
 		deleteBook.addActionListener(al);
 	}
 
-	void addCreateBookListener(ActionListener al) {
+	public void addCreateBookListener(ActionListener al) {
 		createBook.addActionListener(al);
 	}
 

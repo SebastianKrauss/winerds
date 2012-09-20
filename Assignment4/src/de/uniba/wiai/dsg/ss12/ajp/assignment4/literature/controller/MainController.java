@@ -7,9 +7,9 @@ import java.util.Observer;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
+import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.gui.AuthorDialog;
+import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.gui.BookDialog;
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.gui.MainFrame;
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.DatabaseService;
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.LiteratureDatabaseException;
@@ -97,14 +97,66 @@ public class MainController implements Observer {
 			}
 		});
 
-		mainFrame
-				.addAuthorTableListSelectionListener(new ListSelectionListener() {
+		mainFrame.addDeleteAuthorListener(new ActionListener() {
 
-					@Override
-					public void valueChanged(ListSelectionEvent e) {
-
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				int deleteAuthorIndex = mainFrame.getAuthorTable()
+						.getSelectedRow();
+				if (deleteAuthorIndex != -1) {
+					try {
+						databaseService.removeAuthorByEmail(databaseService
+								.getAuthors()[deleteAuthorIndex].getEmail());
+					} catch (LiteratureDatabaseException e) {
+						JOptionPane.showMessageDialog(mainFrame,
+								"Fehler beim Löschen des Autors", "Fehler",
+								JOptionPane.ERROR_MESSAGE);
 					}
-				});
+				} else {
+					JOptionPane.showMessageDialog(mainFrame,
+							"Kein Autor ausgewählt", "Fehler",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+
+		mainFrame.addCreateAuthorListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				AuthorDialog authorDialog = new AuthorDialog();
+			}
+		});
+
+		mainFrame.addDeleteBookListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				int deleteBookIndex = mainFrame.getBookTable().getSelectedRow();
+				if (deleteBookIndex != -1) {
+					try {
+						databaseService.removeBookByISBN(databaseService
+								.getAuthors()[deleteBookIndex].getEmail());
+					} catch (LiteratureDatabaseException e) {
+						JOptionPane.showMessageDialog(mainFrame,
+								"Fehler beim Löschen des Buchs", "Fehler",
+								JOptionPane.ERROR_MESSAGE);
+					}
+				} else {
+					JOptionPane.showMessageDialog(mainFrame,
+							"Kein Buch ausgewählt", "Fehler",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+
+		mainFrame.addCreateBookListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BookDialog bookDialog = new BookDialog();
+			}
+		});
 	}
 
 	@Override

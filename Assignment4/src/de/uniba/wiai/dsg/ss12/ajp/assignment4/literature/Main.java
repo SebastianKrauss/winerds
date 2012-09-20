@@ -18,8 +18,6 @@ public class Main {
 		MainController mainController = new MainController(mainService,
 				mainFrame);
 
-		// AuthorDialog ad = new AuthorDialog();
-		// BookDialog bd = new BookDialog();
 	}
 
 }
