@@ -2,8 +2,8 @@ package de.uniba.wiai.dsg.ss12.ajp.assignment4.literature;
 
 import java.io.IOException;
 
-import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.controller.MainController;
-import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.gui.MainFrame;
+import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.gui.controller.MainController;
+import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.gui.view.MainFrame;
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.MainService;
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.impl.MainServiceImpl;
 

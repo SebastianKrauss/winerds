@@ -31,6 +31,10 @@ class DatabaseServiceImpl extends Observable implements DatabaseService {
 		this.database = database;
 	}
 
+	public Database getDatabase() {
+		return database;
+	}
+
 	@Override
 	public void addBook(String title, String isbn, int yearPublished,
 			Cover cover, Author[] authors, String id)

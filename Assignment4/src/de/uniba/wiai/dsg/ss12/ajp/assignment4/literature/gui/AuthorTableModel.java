@@ -5,7 +5,6 @@ import java.util.LinkedList;
 
 import javax.swing.table.AbstractTableModel;
 
-import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.controller.TableController;
 import de.uniba.wiai.dsg.ss12.ajp.assignment4.literature.logic.model.Author;
 
 @SuppressWarnings("serial")
@@ -16,7 +15,6 @@ public class AuthorTableModel extends AbstractTableModel {
 				Arrays.asList(authorArray));
 	}
 
-	private TableController tableController = new TableController();
 	private String[] columnNames = { "Id", "Name", "Email",
 			"Geschriebene Bücher" };
 
